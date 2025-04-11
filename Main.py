@@ -12,7 +12,7 @@ call_handler = None
 voice_chat_manager = None
 
 bot = Client(
-    "MusicUserBot",
+    "Music",
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
