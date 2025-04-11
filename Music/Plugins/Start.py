@@ -1,7 +1,9 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from Main import bot
 
-@Client.on_message(filters.command("start"))
+
+@bot.on_message(filters.command("start"))
 async def start_command(client: Client, message):
     user_name = message.from_user.first_name if message.from_user else "User"
     reply_markup = InlineKeyboardMarkup(
@@ -22,17 +24,17 @@ async def start_command(client: Client, message):
     )
 
 # Example callback query handlers (you'll need to implement the logic for these)
-@Client.on_callback_query(filters.regex("^play_menu$"))
+@bot.on_callback_query(filters.regex("^play_menu$"))
 async def play_menu_callback(client: Client, callback_query):
     await callback_query.answer()
     await callback_query.message.edit_text("🎵 Play Music Menu:\n\nUse /play <song name or URL> to start playing.", reply_markup=None)
 
-@Client.on_callback_query(filters.regex("^settings_menu$"))
+@bot.on_callback_query(filters.regex("^settings_menu$"))
 async def settings_menu_callback(client: Client, callback_query):
     await callback_query.answer()
     await callback_query.message.edit_text("⚙️ Settings Menu:\n\n(Settings options will be added here)", reply_markup=None)
 
-@Client.on_callback_query(filters.regex("^help_menu$"))
+@bot.on_callback_query(filters.regex("^help_menu$"))
 async def help_menu_callback(client: Client, callback_query):
     await callback_query.answer()
     help_text = "❓ Help Menu:\n\nAvailable commands:\n"
@@ -43,7 +45,7 @@ async def help_menu_callback(client: Client, callback_query):
     # Add more commands as you implement them
     await callback_query.message.edit_text(help_text, reply_markup=None)
 
-@Client.on_callback_query(filters.regex("^about_menu$"))
+@bot.on_callback_query(filters.regex("^about_menu$"))
 async def about_menu_callback(client: Client, callback_query):
     await callback_query.answer()
     about_text = "ℹ️ About Music Bot:\n\nThis bot is created using Pyrogram and Pytgcalls.\n\nCreator: Your Name/Username\nVersion: 1.0 (or your version)"
