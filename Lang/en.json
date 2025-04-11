@@ -1,0 +1,17 @@
+{
+  "play_command_usage": "Please provide a song name or URL to play.",
+  "added_to_queue": "Added '{title}' to the queue.",
+  "now_playing": "Now playing: {title} (requested by {requested_by})",
+  "queue_empty": "The queue is empty.",
+  "current_queue": "Current Queue:\n{queue_list}",
+  "nothing_playing_skip": "Nothing is playing to skip.",
+  "skipped": "Skipped to the next track.",
+  "radio_playing": "Playing radio stream from: {url}",
+  "radio_stopped": "Radio stream stopped.",
+  "lyrics_not_found": "Lyrics for '{title}' not found.",
+  "volume_set": "Volume set to {level}%",
+  "invalid_volume": "Volume level must be between 0 and 100.",
+  "muted": "Muted.",
+  "unmuted": "Unmuted.",
+  "vc_manager_not_init": "Voice chat manager not initialized yet."
+}
