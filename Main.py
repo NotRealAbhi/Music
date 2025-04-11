@@ -1,4 +1,5 @@
 import logging
+import time
 from pyrogram import Client
 from Config.Config import API_ID, API_HASH, BOT_TOKEN
 from Music.Call.Calls import CallHandler
@@ -28,4 +29,10 @@ if __name__ == "__main__":
     voice_chat_manager = VoiceChatManager(call_handler)
     LOGGER.info("Music User Bot has started!")
 
-    bot.idle()  # Keeps the bot running
+    # Keeps the script running like idle()
+    try:
+        while True:
+            time.sleep(86400)  # Sleep for a day in each loop
+    except KeyboardInterrupt:
+        LOGGER.info("Stopping Music User Bot...")
+        bot.stop()
