@@ -10,14 +10,6 @@ LOGGER = logging.getLogger(__name__)
 call_handler = None
 voice_chat_manager = None
 
-def on_start(client):
-    global call_handler, voice_chat_manager
-    LOGGER.info("Starting Music User Bot...")
-    call_handler = CallHandler(client)
-    client.loop.run_until_complete(call_handler.start())
-    voice_chat_manager = VoiceChatManager(call_handler)
-    LOGGER.info("Music User Bot has started!")
-
 bot = Client(
     "MusicUserBot",
     api_id=API_ID,
@@ -26,7 +18,14 @@ bot = Client(
     plugins=dict(root="Music/Plugins")
 )
 
-bot.on_start += on_start
-
 if __name__ == "__main__":
-    bot.run()
+    LOGGER.info("Starting Music User Bot...")
+    bot.start()
+
+    call_handler = CallHandler(bot)
+    bot.loop.run_until_complete(call_handler.start())
+
+    voice_chat_manager = VoiceChatManager(call_handler)
+    LOGGER.info("Music User Bot has started!")
+
+    bot.idle()  # Keeps the bot running
