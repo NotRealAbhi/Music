@@ -1,10 +1,11 @@
 from pyrogram import Client, filters
 from Music.Call.Core import VoiceChatManager
 from Main import voice_chat_manager  # Import the initialized instance
-from pytgcalls.types import AudioPiped
+from pytgcalls.types import MediaStream  # Updated import
 
 @Client.on_message(filters.command("radio") & filters.group)
 async def radio_command(client: Client, message):
+    global voice_chat_manager
     if voice_chat_manager is None:
         await message.reply_text("Voice chat manager not initialized yet.")
         return
@@ -16,7 +17,8 @@ async def radio_command(client: Client, message):
     radio_url = message.command[1]
     await voice_chat_manager.stop(message.chat.id) # Stop any existing playback
     await voice_chat_manager.call_handler.join_call(message.chat.id)
-    await voice_chat_manager.call_handler.play_media(message.chat.id, AudioPiped(radio_url))
+    media_stream = MediaStream(radio_url)  # Use MediaStream directly for URLs
+    await voice_chat_manager.call_handler.play_media(message.chat.id, media_stream)
     await message.reply_text(f"Playing radio stream from: {radio_url}")
 
 @Client.on_message(filters.command("stopradio") & filters.group)
