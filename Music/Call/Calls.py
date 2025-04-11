@@ -1,8 +1,7 @@
 from pytgcalls import PyTgCalls
 from pyrogram import Client
-from pytgcalls.types import MediaStream
-from pytgcalls.types.input_stream import AudioPiped  # Try this import
-from pytgcalls.types.input_stream import Audio  # If the above fails, try this
+from pytgcalls.types import MediaStream, VideoQuality, AudioQuality
+from pytgcalls.types.input_stream import InputAudio  # Updated import
 
 class CallHandler:
     def __init__(self, client: Client):
@@ -34,9 +33,7 @@ class CallHandler:
 
     async def play_audio(self, chat_id: int, path: str, title: str = "Playing"):
         await self.join_call(chat_id)
-        audio_stream = AudioPiped(path) # Try this first
-        # If the above fails, try:
-        # audio_stream = Audio(path)
+        audio_stream = InputAudio(path)  # Using InputAudio
         await self.pytgcalls.play_media(chat_id, audio_stream)
         self.current_track[chat_id] = {"title": title, "path": path}
         self.active_streams[chat_id] = audio_stream # Store the stream object
@@ -50,16 +47,31 @@ class CallHandler:
 
     async def pause_audio(self, chat_id: int):
         if chat_id in self.active_streams:
-            await self.pytgcalls.pause_stream(chat_id)
+            await self.pytgcalls.pause(chat_id)  # Using the renamed method
 
     async def resume_audio(self, chat_id: int):
         if chat_id in self.active_streams:
-            await self.pytgcalls.resume_stream(chat_id)
+            await self.pytgcalls.resume(chat_id)  # Using the renamed method
 
     async def set_volume(self, chat_id: int, volume: int):
-        await self.pytgcalls.change_stream_volume(chat_id, volume / 100) # Volume should be between 0 and 1
+        await self.pytgcalls.change_stream_volume(chat_id, volume / 100)
 
     async def get_playback_status(self, chat_id: int):
         if chat_id in self.pytgcalls.call_info:
-            return self.pytgcalls.call_info[chat_id].playback_status
+            return self.pytgcalls.call_info[chat_id].capture  # Using the renamed field
         return None
+
+    # Example of using VideoQuality and AudioQuality (you'll need to adapt this
+    # based on how you handle video playback if you implement it)
+    async def play_video(self, chat_id: int, video_path: str, audio_path: str):
+        await self.join_call(chat_id)
+        video_quality = VideoQuality(height=720, width=1280)
+        audio_quality = AudioQuality(bitrate=128)
+        media_stream = MediaStream(
+            video=video_path,
+            audio=audio_path,
+            video_quality=video_quality,
+            audio_quality=audio_quality
+        )
+        await self.pytgcalls.play_media(chat_id, media_stream)
+        # ... other video playback related logic
