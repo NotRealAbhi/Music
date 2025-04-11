@@ -15,7 +15,7 @@ bot = Client(
     "Music",
     api_id=API_ID,
     api_hash=API_HASH,
-    bot_token=7889585262:AAG99xMVwF163xHxeOV4Tqug1Xfe_BWiFZw,
+    bot_token="7889585262:AAG99xMVwF163xHxeOV4Tqug1Xfe_BWiFZw",
     plugins=dict(root="Music/Plugins")
 )
 
