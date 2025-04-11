@@ -1,6 +1,8 @@
 from pytgcalls import PyTgCalls
 from pyrogram import Client
-from pytgcalls.types import AudioPiped, MediaStream
+from pytgcalls.types import MediaStream
+from pytgcalls.types.input_stream import AudioPiped  # Try this import
+from pytgcalls.types.input_stream import Audio  # If the above fails, try this
 
 class CallHandler:
     def __init__(self, client: Client):
@@ -32,7 +34,9 @@ class CallHandler:
 
     async def play_audio(self, chat_id: int, path: str, title: str = "Playing"):
         await self.join_call(chat_id)
-        audio_stream = AudioPiped(path)
+        audio_stream = AudioPiped(path) # Try this first
+        # If the above fails, try:
+        # audio_stream = Audio(path)
         await self.pytgcalls.play_media(chat_id, audio_stream)
         self.current_track[chat_id] = {"title": title, "path": path}
         self.active_streams[chat_id] = audio_stream # Store the stream object
