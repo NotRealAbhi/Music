@@ -3,7 +3,7 @@ import logging
 from pyrogram import Client
 from Config.Config import API_ID, API_HASH, BOT_TOKEN
 from Music.Call.Calls import CallHandler
-from Misic.Call.Core import VoiceChatManager
+from Music.Call.Core import VoiceChatManager
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
