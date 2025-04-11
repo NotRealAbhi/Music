@@ -11,7 +11,7 @@ load_dotenv()
 API_ID = int(os.environ.get("TELEGRAM_API_ID", 25024171))
 API_HASH = os.environ.get("TELEGRAM_API_HASH", "7e709c0f5a2b8ed7d5f90a48219cffd3")
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "7889585262:AAG99xMVwF163xHxeOV4Tqug1Xfe_BWiFZw")
-LOG_GROUP_ID = int(os.environ.get("LOG_GROUP_ID", -1002678147540)  # Replace with your log group ID
+LOG_GROUP_ID = int(os.environ.get("LOG_GROUP_ID", -1002678147540)) # Replace with your log group ID
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
