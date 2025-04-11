@@ -1,0 +1,17 @@
+{
+  "play_command_usage": "कृपया चलाने के लिए गाने का नाम या URL प्रदान करें।",
+  "added_to_queue": "'{title}' कतार में जोड़ा गया।",
+  "now_playing": "अब बज रहा है: {title} (द्वारा अनुरोधित {requested_by})",
+  "queue_empty": "कतार खाली है।",
+  "current_queue": "वर्तमान कतार:\n{queue_list}",
+  "nothing_playing_skip": "छोड़ने के लिए कुछ भी नहीं चल रहा है।",
+  "skipped": "अगले ट्रैक पर छोड़ा गया।",
+  "radio_playing": "से रेडियो स्ट्रीम चल रहा है: {url}",
+  "radio_stopped": "रेडियो स्ट्रीम बंद कर दिया गया।",
+  "lyrics_not_found": "'{title}' के लिए कोई गीत नहीं मिला।",
+  "volume_set": "आवाज़ {level}% पर सेट है",
+  "invalid_volume": "आवाज़ का स्तर 0 और 100 के बीच होना चाहिए।",
+  "muted": "म्यूट किया गया।",
+  "unmuted": "अनम्यूट किया गया।",
+  "vc_manager_not_init": "वॉयस चैट प्रबंधक अभी तक शुरू नहीं हुआ है।"
+}
