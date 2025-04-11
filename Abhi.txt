@@ -1,0 +1,6 @@
+pyrofork
+py-tgcalls==2.1.1
+yt-dlp==2025.03.31
+lyricsgenius
+python-dotenv
+pymongo
